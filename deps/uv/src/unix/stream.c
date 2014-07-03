@@ -715,6 +715,18 @@ static int uv__handle_fd(uv_handle_t* handle) {
   }
 }
 
+static int uv__getiovmax() {
+#if defined(IOV_MAX)
+  return IOV_MAX;
+#elif defined(_SC_IOV_MAX)
+  static int iovmax = -1;
+  if (iovmax == -1)
+    iovmax = sysconf(_SC_IOV_MAX);
+  return iovmax;
+#else
+  return 1024;
+#endif
+}
 
 static void uv__write(uv_stream_t* stream) {
   struct iovec* iov;
@@ -722,6 +734,7 @@ static void uv__write(uv_stream_t* stream) {
   uv_write_t* req;
   int iovcnt;
   ssize_t n;
+  int iovmax;
 
 start:
 
@@ -742,9 +755,11 @@ start:
   iov = (struct iovec*) &(req->bufs[req->write_index]);
   iovcnt = req->bufcnt - req->write_index;
 
+  iovmax = uv__getiovmax();
+
   /* Limit iov count to avoid EINVALs from writev() */
-  if (iovcnt > IOV_MAX)
-    iovcnt = IOV_MAX;
+  if (iovcnt > iovmax)
+    iovcnt = iovmax;
 
   /*
    * Now do the actual writev. Note that we've been updating the pointers
