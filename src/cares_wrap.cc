@@ -33,7 +33,7 @@
 
 #include "util.h"
 
-#if defined(__OpenBSD__) || defined(__MINGW32__) || defined(_MSC_VER)
+#if defined(__OpenBSD__) || defined(__MINGW32__) || defined(_MSC_VER) || defined (__ANDROID__)  || defined(ANDROID)
 # include <nameser.h>
 #else
 # include <arpa/nameser.h>
