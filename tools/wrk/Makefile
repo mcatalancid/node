@@ -1,5 +1,5 @@
-CFLAGS  := -std=c99 -Wall -O2 -pthread
-LDFLAGS := -pthread
+CFLAGS  := -std=c99 -Wall -O2
+LDFLAGS :=
 LIBS    := -lm
 ifeq ($(shell uname),SunOS)
 LIBS    += -lnsl -lsocket -lresolv

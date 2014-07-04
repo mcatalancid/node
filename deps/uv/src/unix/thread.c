@@ -22,7 +22,13 @@
 #include "uv.h"
 #include "internal.h"
 
+
+#if defined (__ANDROID__)
+#include "pthread-fixes.h"
+#else
 #include <pthread.h>
+#endif
+
 #include <assert.h>
 #include <errno.h>
 
@@ -283,8 +289,11 @@ int uv_cond_init(uv_cond_t* cond) {
   if (pthread_condattr_init(&attr))
     return -1;
 
-  if (pthread_condattr_setclock(&attr, CLOCK_MONOTONIC))
+#if !defined(__ANDROID__)
+  err = pthread_condattr_setclock(&attr, CLOCK_MONOTONIC);
+  if (err)
     goto error2;
+#endif
 
   if (pthread_cond_init(cond, &attr))
     goto error2;

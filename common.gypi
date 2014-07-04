@@ -170,9 +170,9 @@
         ],
       }],
       [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd" or OS=="solaris"', {
-        'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter', '-pthread', ],
+        'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter'],
         'cflags_cc': [ '-fno-rtti', '-fno-exceptions' ],
-        'ldflags': [ '-pthread', '-rdynamic' ],
+        'ldflags': [ '-rdynamic' ],
         'target_conditions': [
           ['_type=="static_library"', {
             'standalone_static_library': 1, # disable thin archive which needs binutils >= 2.19

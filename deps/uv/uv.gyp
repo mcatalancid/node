@@ -20,7 +20,7 @@
           ['OS=="solaris"', {
             'cflags': [ '-pthreads' ],
           }, {
-            'cflags': [ '-pthread' ],
+            'cflags': [ '' ],
           }],
         ],
       }],
@@ -159,7 +159,7 @@
               ['OS=="solaris"', {
                 'ldflags': [ '-pthreads' ],
               }, {
-                'ldflags': [ '-pthread' ],
+                'ldflags': [ '' ],
               }],
             ],
           },
@@ -207,10 +207,11 @@
             'src/unix/linux-inotify.c',
             'src/unix/linux-syscalls.c',
             'src/unix/linux-syscalls.h',
+            'src/unix/android-ifaddrs.c',
+            'src/unix/pthread-fixes.c',
+            'include/uv-private/android-ifaddrs.h',
+            'include/uv-private/pthread-fixes.h',
           ],
-          'link_settings': {
-            'libraries': [ '-ldl', '-lrt' ],
-          },
         }],
         [ 'OS=="solaris"', {
           'sources': [ 'src/unix/sunos.c' ],

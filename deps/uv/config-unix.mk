@@ -58,6 +58,9 @@ OBJS += src/uv-common.o
 OBJS += src/inet.o
 OBJS += src/version.o
 
+OBJS += src/android-ifaddrs.o
+OBJS += src/pthread-fixes.o
+
 ifeq (sunos,$(PLATFORM))
 HAVE_DTRACE ?= 1
 CPPFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=500
@@ -98,7 +101,6 @@ endif
 
 ifeq (linux,$(PLATFORM))
 CSTDFLAG += -D_GNU_SOURCE
-LDFLAGS+=-ldl -lrt
 RUNNER_CFLAGS += -D_GNU_SOURCE
 OBJS += src/unix/linux-core.o \
         src/unix/linux-inotify.o \
@@ -142,8 +144,6 @@ endif
 
 ifeq (sunos,$(PLATFORM))
 RUNNER_LDFLAGS += -pthreads
-else
-RUNNER_LDFLAGS += -pthread
 endif
 
 ifeq ($(HAVE_DTRACE), 1)

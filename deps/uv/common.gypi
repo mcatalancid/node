@@ -149,10 +149,8 @@
           [ 'OS=="solaris"', {
             'cflags': [ '-pthreads' ],
             'ldflags': [ '-pthreads' ],
-          }, {
-            'cflags': [ '-pthread' ],
-            'ldflags': [ '-pthread' ],
-          }],
+          }
+          ],
           [ 'visibility=="hidden" and (clang==1 or gcc_version >= 40)', {
             'cflags': [ '-fvisibility=hidden' ],
           }],
