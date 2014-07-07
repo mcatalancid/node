@@ -8,7 +8,7 @@
 #include <queue>
 
 #include <sqlite3.h>
-#include "nan.h"
+#include "nan_sqlite3.h"
 #include "async.h"
 
 using namespace v8;

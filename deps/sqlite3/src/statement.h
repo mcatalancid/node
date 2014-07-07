@@ -13,7 +13,7 @@
 #include <vector>
 
 #include <sqlite3.h>
-#include "nan.h"
+#include "nan_sqlite3.h"
 
 using namespace v8;
 using namespace node;
