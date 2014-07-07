@@ -55,6 +55,8 @@
       'lib/util.js',
       'lib/vm.js',
       'lib/zlib.js',
+      'lib/sqlite3.js',
+      'lib/trace.js',
     ],
   },
 

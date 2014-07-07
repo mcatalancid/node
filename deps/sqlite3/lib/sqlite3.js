@@ -1,8 +1,5 @@
 var path = require('path');
-var binary = require('node-pre-gyp');
-var path = require('path')
-var binding_path = binary.find(path.resolve(path.join(__dirname,'../package.json')));
-var binding = require(binding_path);
+var binding = process.binding('sqlite3');
 var sqlite3 = module.exports = exports = binding;
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
