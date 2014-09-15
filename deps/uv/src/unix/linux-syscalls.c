@@ -366,7 +366,7 @@ int uv__recvmmsg(int fd,
                  struct uv__mmsghdr* mmsg,
                  unsigned int vlen,
                  unsigned int flags,
-                 struct timespec* timeout) {
+                 struct timespec* timeout){
 #if defined(__NR_recvmmsg)
   return syscall(__NR_recvmmsg, fd, mmsg, vlen, flags, timeout);
 #else

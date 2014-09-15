@@ -133,6 +133,8 @@ int uv__inotify_init1(int flags);
 int uv__inotify_add_watch(int fd, const char* path, uint32_t mask);
 int uv__inotify_rm_watch(int fd, int32_t wd);
 int uv__pipe2(int pipefd[2], int flags);
+
+#if defined(__x86_64__)
 int uv__recvmmsg(int fd,
                  struct uv__mmsghdr* mmsg,
                  unsigned int vlen,
@@ -146,5 +148,6 @@ int uv__utimesat(int dirfd,
                  const char* path,
                  const struct timespec times[2],
                  int flags);
+#endif
 
 #endif /* UV_LINUX_SYSCALL_H_ */
